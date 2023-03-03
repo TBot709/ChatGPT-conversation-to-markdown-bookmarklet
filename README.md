@@ -12,3 +12,5 @@ Here are the steps to use the bookmarklet:
 4. Edit the bookmark, and for the URL or Location of the bookmark, paste the code you just copied.
 
 5. Save the bookmark.
+
+Now, whenever you're in a ChatGPT conversation and you want to save it as a Markdown file, simply click on the bookmarklet you just created. A file with the name of the conversation and the current date and time will be downloaded, with the conversation formatted as a Markdown file.
