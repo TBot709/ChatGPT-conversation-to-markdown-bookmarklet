@@ -1,12 +1,12 @@
 javascript: (function () {
-    var odd = document.querySelectorAll(".items-center .group:nth-child(odd) .items-start");
-    var even = document.querySelectorAll(".items-center .group:nth-child(even) .items-start");
+    var hElem = document.querySelectorAll(".flex[role='presentation'] .group:nth-child(even) .items-start");
+    var aiElem = document.querySelectorAll(".flex[role='presentation'] .group:nth-child(odd) .items-start");
 
-    if (odd.length === 0 || even.length === 0) {
+    if (hElem.length === 0 || aiElem.length === 0) {
         alert("Failed to find expected html elements.\nIs this a chat.openai.com/chat/ page?");
         return;
     }
-    if (odd.length != even.length) {
+    if (hElem.length != aiElem.length) {
         alert("count mismatch");
         return;
     }
@@ -15,11 +15,11 @@ javascript: (function () {
     var timestamp = new Date().toISOString();
 
     var s = "# " + title + " " + timestamp + "\n\n";
-    for (var i = 0; i < odd.length; i++) {
+    for (var i = 0; i < hElem.length; i++) {
 
-        s += "## HUMAN:\n\n" + odd[i].innerHTML + "\n\n";
+        s += "## HUMAN:\n\n" + hElem[i].innerHTML + "\n\n";
 
-        var e = even[i];
+        var e = aiElem[i];
         s += "## CHATGPT:\n\n";
         for (var child of e.querySelector(".prose").children) {
             if (child.localName === "p") {
@@ -37,7 +37,7 @@ javascript: (function () {
                     "\n```" +
                     child.querySelector(".items-center span").innerHTML +
                     "\n" +
-                    child.querySelector("code").innerHTML.replace(/<[^>]*>/g, "") +
+                    child.querySelector("code").textContent +
                     "```\n\n";
             } else if (child.localName === "ol") {
                 const liElements = child.querySelectorAll("li");
